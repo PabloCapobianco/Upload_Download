@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form method="post" enctype="multipart/form-data"> {% csrf_token %}
+  <input type="file" id="inputfl" name="upload">
+  <button type="submit" id="btnt" hidden="hidden">Submit</button>
+</form>
+<p id="p">archivo no cargado</p>
+<p id="p2">...</p>
+<button type="button" id="btnf">Submit</button>
+
+<script>
+
+var bool = false;
+
+const inputfl = document.getElementById("inputfl");
+const btnt = document.getElementById("btnt");
+const btnf = document.getElementById("btnf");
+var p2 = document.getElementById("p2");
+btnf.onclick = function(){if (bool === true) {btnt.click(); p2.innerHTML = "aguarde mientras se procesa el archivo"}};
+inputfl.addEventListener("change", myFunction);
+
+//setInterval(myFunction, 100)
+function myFunction() {
+  if (inputfl.files.length == 0) {
+    document.getElementById("p").innerHTML = "archivo no cargado";
+    bool = false
+  }
+  else {
+   document.getElementById("p").innerHTML = "archivo cargado";
+   bool = true
+ }
+}
+
+</script>
+
+</body>
+</html>
